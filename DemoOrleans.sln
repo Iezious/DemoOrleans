@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoContracts", "DemoContracts\DemoContracts.csproj", "{062DFC5B-C830-4C66-911C-EB95E7CA8D8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoClient", "DemoClient\DemoClient.csproj", "{A5069E29-788F-4DE0-9558-FB39E23EAE2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSIlo", "DemoSIlo\DemoSIlo.csproj", "{3205FD09-4037-43EA-ADC8-5219923B946C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{062DFC5B-C830-4C66-911C-EB95E7CA8D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062DFC5B-C830-4C66-911C-EB95E7CA8D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062DFC5B-C830-4C66-911C-EB95E7CA8D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062DFC5B-C830-4C66-911C-EB95E7CA8D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5069E29-788F-4DE0-9558-FB39E23EAE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5069E29-788F-4DE0-9558-FB39E23EAE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5069E29-788F-4DE0-9558-FB39E23EAE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5069E29-788F-4DE0-9558-FB39E23EAE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3205FD09-4037-43EA-ADC8-5219923B946C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3205FD09-4037-43EA-ADC8-5219923B946C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3205FD09-4037-43EA-ADC8-5219923B946C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3205FD09-4037-43EA-ADC8-5219923B946C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
