@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
+using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
-using Orleans.Runtime.Development;
+using Serilog;
 
 namespace DemoSIlo
 {
@@ -23,21 +19,22 @@ namespace DemoSIlo
             Host.CreateDefaultBuilder(args)
                 .UseOrleans(siloBuilder =>
                 {
+                    int portShift = (args.Length > 0) ? int.Parse(args[0]) : 0;
+                    
                     siloBuilder
-                        .UseLocalhostClustering()
-                        .ConfigureEndpoints(IPAddress.Loopback, 11111, 30000, true)
+                        .UseZooKeeperClustering(config => { config.ConnectionString = "localhost:2181";})
+                        .ConfigureEndpoints(IPAddress.Loopback, 11111 + portShift, 30000 + portShift, true)
                         .Configure<ClusterOptions>(options =>
                         {
                             options.ClusterId = "demoCluster";
                             options.ServiceId = "demoService";
                         })
-                        .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(DemoGrain).Assembly).WithReferences())
-                        .ConfigureApplicationParts(partsOptions =>
-                        {
-                            partsOptions.ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences())
-                        })
                         .Configure<ProcessExitHandlingOptions>(options => { options.FastKillOnProcessExit = false; });
                 })
-                .ConfigureServices((hostContext, services) => { services.AddHostedService<Worker>(); });
+                .UseSerilog((opt, ctx) => { ctx.WriteTo.Console(); })
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddHostedService<Worker>();
+                });
     }
 }

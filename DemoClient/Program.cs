@@ -4,6 +4,7 @@ using DemoContracts;
 using Microsoft.Extensions.Logging;
 using Orleans;
 using Orleans.Configuration;
+using Orleans.Hosting;
 
 namespace DemoClient
 {
@@ -41,21 +42,21 @@ namespace DemoClient
                         case 0:
                         {
                             var res = await grain.Sum(a, b);
-                            Console.Write($"{a}+{b}+id = {res}");
+                            Console.WriteLine($"{a}+{b}+id = {res}");
                             break;
                         }
 
                         case 1:
                         {
                             var res = await grain.Mul(a, b);
-                            Console.Write($"{a}*{b}+id = {res}");
+                            Console.WriteLine($"{a}*{b}+id = {res}");
                             break;
                         }
 
                         case 2:
                         {
                             var res = await grain.Div(a, b);
-                            Console.Write($"{a}/{b}+id = {res}");
+                            Console.WriteLine($"{a}/{b}+id = {res}");
                             break;
                         }
                     }
@@ -65,7 +66,6 @@ namespace DemoClient
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw;
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace DemoClient
         private static IClusterClient ConnectToOrleans()
         {
             var client = new ClientBuilder()
-                .UseLocalhostClustering()
+                .UseZooKeeperClustering(config => { config.ConnectionString = "localhost:2181";})
                 .Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "demoCluster";
